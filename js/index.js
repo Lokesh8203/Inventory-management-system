@@ -27,6 +27,19 @@ Display.prototype.validate = function (instrument) {
   } else return true;
 };
 
+Display.prototype.show = function (msg) {
+  let message = document.getElementById("msg");
+  message.innerHTML = `<div class="alert alert-warning alert-dismissible fade show" role="alert">
+                          ${msg}
+                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>`;
+  setTimeout(function () {
+    message.innerHTML = "";
+  }, 3000);
+};
+
 //Add submit event listner
 let vibesform = document.getElementById("vibesform");
 vibesform.addEventListener("submit", formSubmit);
@@ -55,7 +68,8 @@ function formSubmit(e) {
   if (display.validate(instrument)) {
     display.add(instrument);
     display.clear();
+    display.show("Added instrument");
   } else {
-    console.log("Error");
+    display.show("ID cannot be empty!");
   }
 }
