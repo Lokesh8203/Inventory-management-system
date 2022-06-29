@@ -21,6 +21,12 @@ Display.prototype.clear = function () {
   vibesform.reset();
 };
 
+Display.prototype.validate = function (instrument) {
+  if (instrument.Id.length == 0) {
+    return false;
+  } else return true;
+};
+
 //Add submit event listner
 let vibesform = document.getElementById("vibesform");
 vibesform.addEventListener("submit", formSubmit);
@@ -46,6 +52,10 @@ function formSubmit(e) {
   let instrument = new Instrument(Id, type, additional);
 
   let display = new Display();
-  display.add(instrument);
-  display.clear();
+  if (display.validate(instrument)) {
+    display.add(instrument);
+    display.clear();
+  } else {
+    console.log("Error");
+  }
 }
