@@ -6,6 +6,16 @@ function Instrument(Id, type, additional) {
 
 function Display() {}
 //Methods for Display
+Display.prototype.add = function (instrument) {
+  tableBody = document.getElementById("tableBody");
+  let uistring = `<tr>
+                    <td>${instrument.Id}</td>
+                    <td>${instrument.type}</td>
+                    <td>${instrument.additional}</td>
+                  </tr>`;
+  tableBody.innerHTML += uistring;
+};
+
 
 //Add submit event listner
 let vibesform = document.getElementById("vibesform");
@@ -30,4 +40,7 @@ function formSubmit(e) {
 
   let additional = document.getElementById("additional").value;
   let instrument = new Instrument(Id, type, additional);
+
+  let display = new Display();
+  display.add(instrument);
 }
