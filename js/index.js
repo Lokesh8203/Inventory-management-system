@@ -16,6 +16,10 @@ Display.prototype.add = function (instrument) {
   tableBody.innerHTML += uistring;
 };
 
+Display.prototype.clear = function () {
+  let vibesform = document.getElementById("vibesform");
+  vibesform.reset();
+};
 
 //Add submit event listner
 let vibesform = document.getElementById("vibesform");
@@ -43,4 +47,5 @@ function formSubmit(e) {
 
   let display = new Display();
   display.add(instrument);
+  display.clear();
 }
